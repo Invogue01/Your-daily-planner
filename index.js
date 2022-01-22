@@ -27,3 +27,11 @@ var planDay = [
 // Header
 // show current day in header
 $("#currentDay").text(today);
+
+// check local storage for previous saved day planner
+var checkPrevious = JSON.parse(localStorage.getItem("dayPlanner"));
+
+// get previously saved day planner from local storage (if exists)
+if (checkPrevious !== null) {
+	planDay = checkPrevious;
+}
