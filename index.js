@@ -1,4 +1,3 @@
-const moment= require("moment");
 console.log(moment());
 
 // jQuery
@@ -6,7 +5,7 @@ $(function() {});
 
 
 // current day
-var today = moment().format("dddd, MMMM Do");
+var today = moment().format("dddd, Do MMMM");
 
 // current hour
 var now = moment().format("H A");
@@ -24,3 +23,7 @@ var planDay = [
 	{ time: "4 PM", event: "" },
 	{ time: "5 PM", event: "" }
 ];
+
+// Header
+// show current day in header
+$("#currentDay").text(today);
