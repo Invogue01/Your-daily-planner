@@ -37,7 +37,7 @@ if (checkPrevious !== null) {
 }
 
 // Day Planner
-// for each timeblock in business hours create color coded row
+// for each time-block in business hours create color coded row
 planDay.forEach(function(timeBlock, index) {
 	// variable for the time block label
 	var timeLabel = timeBlock.time;
@@ -57,17 +57,17 @@ planDay.forEach(function(timeBlock, index) {
 		timeBlock.event +
 		'</textarea><div class="col-sm-2 col-lg-1 input-group-append"><button class="saveBtn btn-block" type="submit"><i class="far fa-save"></i></button></div></div></div>';
 
-	// show timeblock rows
+	// show time-block rows
 	$(".container").append(block);
 })
 
 // function for color coding
 function colorMe(time) {
-	// variables to compare timeblock time to current time
+	// variables to compare time-block time to current time
 	var testNow = moment(now, "H A");
 	var testBlock = moment(time, "H A");
 
-	// return color style for timeblock
+	// return color style for time-block
 	if (testNow.isBefore(testBlock) === true) {
 		return "future";
 	} else if (testNow.isAfter(testBlock) === true) {
@@ -76,3 +76,28 @@ function colorMe(time) {
 		return "present";
 	}
 }
+
+
+// when save button is clicked
+$(".saveBtn").on("click", function(event) {
+	// variable for ID of target time-block
+	var blockID = parseInt(
+		$(this)
+			.closest(".time-block")
+			.attr("id")
+	);
+
+	// user entry in target time-block
+	var userEntry = $.trim(
+		$(this)
+			.parent()
+			.siblings("textarea")
+			.val()
+	);
+
+	// save in day planner array at target index
+	planDay[blockID].event = userEntry;
+
+	// save to local storage
+	localStorage.setItem("dayPlanner", JSON.stringify(planDay));
+});
