@@ -4,6 +4,10 @@ body {
   line-height: 1;
 }
 
+body {
+  background-image: url("./assets/time.jpg");
+}
+
 textarea {
   background: transparent;
   border: none;
@@ -15,7 +19,7 @@ textarea {
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background-color: aliceblue;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
