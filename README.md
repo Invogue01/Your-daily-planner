@@ -33,6 +33,7 @@ THEN the text for that event is saved in local storage
 WHEN you refresh the page
 THEN the saved events persist
 ```
+[https://invogue01.github.io/Your-daily-planner/](https://invogue01.github.io/Your-daily-planner/)
 
 The following animation demonstrates the application functionality:
 
