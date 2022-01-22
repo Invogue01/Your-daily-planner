@@ -35,3 +35,44 @@ var checkPrevious = JSON.parse(localStorage.getItem("dayPlanner"));
 if (checkPrevious !== null) {
 	planDay = checkPrevious;
 }
+
+// Day Planner
+// for each timeblock in business hours create color coded row
+planDay.forEach(function(timeBlock, index) {
+	// variable for the time block label
+	var timeLabel = timeBlock.time;
+
+	// variable for the color of the text area
+	var blockColor = colorMe(timeLabel);
+
+	// variable for the user entry row including label, user event, and save button
+	var block =
+		'<div class="time-block" id="' +
+		index +
+		'"><div class="row no-gutters input-group"><div class="col-sm-2 col-lg-1 input-group-prepend hour justify-content-sm-end pr-3 pt-3">' +
+		timeLabel +
+		'</div><textarea class="form-control ' +
+		blockColor +
+		' description">' +
+		timeBlock.event +
+		'</textarea><div class="col-sm-2 col-lg-1 input-group-append"><button class="saveBtn btn-block" type="submit"><i class="far fa-save"></i></button></div></div></div>';
+
+	// show timeblock rows
+	$(".container").append(block);
+})
+
+// function for color coding
+function colorMe(time) {
+	// variables to compare timeblock time to current time
+	var testNow = moment(now, "H A");
+	var testBlock = moment(time, "H A");
+
+	// return color style for timeblock
+	if (testNow.isBefore(testBlock) === true) {
+		return "future";
+	} else if (testNow.isAfter(testBlock) === true) {
+		return "past";
+	} else {
+		return "present";
+	}
+}
